@@ -195,3 +195,4 @@ cython_debug/
 
 # Personal
 .DS_Store
+scripts/

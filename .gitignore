@@ -196,3 +196,4 @@ cython_debug/
 # Personal
 .DS_Store
 scripts/
+*[!0-9]*.py

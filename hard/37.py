@@ -3,7 +3,7 @@ Sudoku Solver.
 
 Необходимо решить судоку размером 9 * 9.
 
-Лучшее решение: 1967 ms, 17.95 Mb
+Лучшее решение: 1774 ms, 17.97 Mb
 """
 
 
@@ -25,32 +25,33 @@ class Solution:
                 else:
                     self.empty_cnt += 1
 
-    def rec(self, board: list[list[str]], curr_row: int = 0):
-        for i in range(curr_row, 9):
-            for j in range(9):
-                if board[i][j] == '.':
-                    cnt = 0
-                    for k in range(9):
-                        cnd = (
-                            self.rows[i][k]
-                            and self.cols[j][k]
-                            and self.thirds[i // 3 * 3 + j // 3][k]
-                        )
-                        if cnd:
-                            cnt += 1
-                            self.rows[i][k] = False
-                            self.cols[j][k] = False
-                            self.thirds[i // 3 * 3 + j // 3][k] = False
-                            board[i][j] = str(k + 1)
-                            status = self.rec(board=board, curr_row=i)
-                            if status == 'wrong':
-                                self.rows[i][k] = True
-                                self.cols[j][k] = True
-                                self.thirds[i // 3 * 3 + j // 3][k] = True
-                                board[i][j] = '.'
-                                cnt -= 1
-                    if not cnt:
-                        return 'wrong'
+    def rec(self, board: list[list[str]], curr: int = 0):
+        for pos in range(curr, 81):
+            i = pos // 9
+            j = pos % 9
+            if board[i][j] == '.':
+                cnt = 0
+                for k in range(9):
+                    cnd = (
+                        self.rows[i][k]
+                        and self.cols[j][k]
+                        and self.thirds[i // 3 * 3 + j // 3][k]
+                    )
+                    if cnd:
+                        cnt += 1
+                        self.rows[i][k] = False
+                        self.cols[j][k] = False
+                        self.thirds[i // 3 * 3 + j // 3][k] = False
+                        board[i][j] = str(k + 1)
+                        status = self.rec(board=board, curr=pos)
+                        if status == 'wrong':
+                            self.rows[i][k] = True
+                            self.cols[j][k] = True
+                            self.thirds[i // 3 * 3 + j // 3][k] = True
+                            board[i][j] = '.'
+                            cnt -= 1
+                if not cnt:
+                    return 'wrong'
         return 'ok'
 
     def solveSudoku(self, board: list[list[str]]) -> None:

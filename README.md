@@ -1,7 +1,7 @@
 # Leetcode
 Solved problems from the LeetCode
 
-At 30<sup>th</sup> June 2025:
-- **Easy**: 11
+At 1<sup>th</sup> July 2025:
+- **Easy**: 12
 - **Medium**: 16
 - **Hard**: 7

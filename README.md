@@ -1,7 +1,7 @@
 # Leetcode
 Solved problems from the LeetCode
 
-At 14<sup>th</sup> September 2025:
-- **Easy**: 35
-- **Medium**: 85
-- **Hard**: 16
+At 18<sup>th</sup> January 2026:
+- **Easy**: 47
+- **Medium**: 113
+- **Hard**: 18

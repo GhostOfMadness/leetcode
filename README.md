@@ -1,7 +1,7 @@
 # Leetcode
 Solved problems from the LeetCode
 
-At 9<sup>th</sup> February 2026:
-- **Easy**: 56
-- **Medium**: 122
-- **Hard**: 23
+At 18<sup>th</sup> March 2026:
+- **Easy**: 67
+- **Medium**: 138
+- **Hard**: 28

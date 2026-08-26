@@ -1,9 +1,9 @@
 # Leetcode
 Solved problems from the LeetCode.
 
-At 31<sup>th</sup> May 2026:
-- **Easy**: 84
-- **Medium**: 161
-- **Hard**: 31
+At 26<sup>th</sup> August 2026:
+- **Easy**: 96
+- **Medium**: 188
+- **Hard**: 33
 
-**Total**: 276
+**Total**: 317

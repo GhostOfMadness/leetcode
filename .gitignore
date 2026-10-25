@@ -198,4 +198,6 @@ cython_debug/
 scripts/
 *[!0-9]*.py
 yandex/
+not_solved/
+need_optimization/
 .txt

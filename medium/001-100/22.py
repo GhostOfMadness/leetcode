@@ -24,7 +24,21 @@ Generate Parentheses.
 до предельной длины, то в curr точно правильная последовательность и проверка
 не требуется.
 
-Лучшее решение: 0 ms, 17.86 Mb
+В версии 2026 года массив ответа является внешней переменной, к которой идет
+обращение внутри рекурсии. Рекурсия внутри использует только переменные кол-ва
+поставленных открывающих (bOpen) и закрывающих скобок (bClose). Открывающую
+скобку можно поставить, если их число меньше n, т.е. bOpen < n. Закрывающую
+скобку можно поставить, если их меньше, чем открывающих, bClose < bOpen.
+Текущее состояние последовательности скобок задается массивом curr, а не
+строкой, поэтому после каждого выхода из рекурсии нужно удалять добавленную
+ранее скобку, чтобы корректно перейти к следующему шагу.
+
+При 10 ** 4 запусках при n = 8 версия от 2025 года работает быстрее, 10.968
+сек против 13.886 сек.
+
+Лучшее решение: 0 ms (100.00%), 17.86 Mb (100.00%) <- 2025
+                0 ms (100.00%), 19.49 Mb (36.93%) <- 2026
+#bracket_sequences #backtracking #recursion
 """
 
 
@@ -45,8 +59,31 @@ class Solution:
             if now_open:
                 self.rec(now_open - 1, open_cnt, curr + ')', curr_len + 1)
 
-    def generateParenthesis(self, n: int) -> list[str]:
+    def generateParenthesis2025(self, n: int) -> list[str]:
+        """Версия от 08.08.2025."""
         self.ans = []
         self.n = 2 * n
         self.rec()
         return self.ans
+
+    def generateParenthesis2026(self, n: int) -> list[str]:
+        """Версия от 02.10.2026."""
+        ans = []
+        curr = []
+        total = 2 * n
+
+        def rec(bOpen: int = 0, bClose: int = 0) -> None:
+            if bOpen + bClose == total:
+                ans.append(''.join(curr))
+            else:
+                if bOpen < n:
+                    curr.append('(')
+                    rec(bOpen + 1, bClose)
+                    curr.pop()
+                if bOpen > bClose:
+                    curr.append(')')
+                    rec(bOpen, bClose + 1)
+                    curr.pop()
+
+        rec()
+        return ans

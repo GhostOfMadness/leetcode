@@ -9,7 +9,8 @@ Valid Parentheses.
 эту открытую скобку, то есть удаляем ее из стека. В ином случае, возвращаем
 False. После прохода по всем элементам строки, проверяем, что стек пуст.
 
-Лучшее решение: 0 ms, 17.78 Mb
+Лучшее решение: 0 ms (100.00%), 17.78 Mb (100.00%)
+#bracket_sequences #stack #string
 """
 
 
@@ -23,11 +24,10 @@ class Solution:
             '}': '{',
         }
         for e in s:
-            if e in {'(', '[', '{'}:
-                stack.append(e)
-            else:
-                if stack and stack[-1] == d[e]:
-                    stack.pop()
-                else:
+            if e in d:
+                if not stack or stack[-1] != d[e]:
                     return False
-        return len(stack) == 0
+                stack.pop()
+            else:
+                stack.append(e)
+        return not stack
